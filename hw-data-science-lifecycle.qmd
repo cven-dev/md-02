@@ -38,7 +38,7 @@ library(here)
 
 1.  Examine the code chunk below and verify each element:
 
--   The CSV file 'country_level_data_0.csv' is imported from the 'wk-02/data' directory using the `read_csv()` function
+-   The CSV file 'country_level_data_0.csv' is imported from the 'md-02/data' directory using the `read_csv()` function
 -   The assignment operator (`<-`) assigns the data to an object named `global_waste_data`
 -   The `here()` function creates a proper file path
 
@@ -49,7 +49,7 @@ library(here)
 **Note:** You will learn more about the use of the `here()` function when we look at data import in more detail.
 
 ```{r}
-global_waste_data <- read_csv(here("wk-02/data/country_level_data_0.csv"))
+global_waste_data <- read_csv(here("md-02/data/country_level_data_0.csv"))
 ```
 
 # Task 2: Data tidying (and some transformation)
@@ -155,13 +155,13 @@ This final section introduces the workflow you need to follow at the end of each
 3.  Write a meaningful commit message (e.g. "Completed week 2 data science lifecycle homework") in the **Commit message** box
 4.  Click **Commit**. Note that every commit needs to have a commit message associated with it.
 5.  Click **Push** to send your changes to GitHub.
-6.  Go to your wk-02-USERNAME GitHub repo (where USERNAME is your GitHub username) and refresh the page. You should see your commit message next to the updated files.
+6.  Go to your md-02-USERNAME GitHub repo (where USERNAME is your GitHub username) and refresh the page. You should see your commit message next to the updated files.
 
 ## Open an issue on GitHub
 
-Once you have ensured that the Quarto document renders without errors and you have pushed all your changes to GitHub, it is time to complete the assignment by opening an issue on your wk-02-USERNAME GitHub repo (where USERNAME is your GitHub username).
+Once you have ensured that the Quarto document renders without errors and you have pushed all your changes to GitHub, it is time to complete the assignment by opening an issue on your md-02-USERNAME GitHub repo (where USERNAME is your GitHub username).
 
-1.  Navigate to your wk-02-USERNAME GitHub repo (where USERNAME is your GitHub username).
+1.  Navigate to your md-02-USERNAME GitHub repo (where USERNAME is your GitHub username).
 2.  Click on **Issues**, and then **New issue** button.
 3.  Write a meaningful title in the **Title** field
 4.  Tag the course instructor with using the `@` sign in combination with `larnsce` as the username
