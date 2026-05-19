@@ -2,8 +2,6 @@
 
 Homework repo for **Module 2** of [CVEN 5999: Special Topics — Data Analytics for Development](https://cven5999-ss26.github.io/website/) (Summer 2026, CU Boulder).
 
-Lecture: `lec-01` · Module date: 2026-06-01 · Homework due: 2026-06-05
-
 ## What's in here
 
 - `git-configuration.qmd` — one-time Git/GitHub setup
