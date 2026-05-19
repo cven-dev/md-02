@@ -1,7 +1,5 @@
 # md-02 — Welcome! & Data Science Life-cycle
 
-Homework repo for **Module 2** of [CVEN 5999: Special Topics — Data Analytics for Development](https://cven5999-ss26.github.io/website/) (Summer 2026, CU Boulder).
-
 ## What's in here
 
 - `git-configuration.qmd` — one-time Git/GitHub setup
