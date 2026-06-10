@@ -17,8 +17,9 @@ This homework assignment is designed as a guided walkthrough of the data science
 As you work through each task, carefully read the step-by-step instructions and identify the corresponding elements in the provided code. This format will help you understand how I will describe coding tasks in future exercises, so pay attention to how each step connects to specific parts of the code.
 
 Your main objectives are to:
+
 - Run each code chunk and ensure it executes without errors
-- Verify that each step produces the expected results  
+- Verify that each step produces the expected results
 - Understand the connection between the task descriptions and the code implementation
 
 # Task 0: Load R packages
@@ -38,9 +39,9 @@ library(here)
 
 1.  Examine the code chunk below and verify each element:
 
--   The CSV file 'country_level_data_0.csv' is imported from the 'md-02/data' directory using the `read_csv()` function
--   The assignment operator (`<-`) assigns the data to an object named `global_waste_data`
--   The `here()` function creates a proper file path
+- The CSV file 'country_level_data_0.csv' is imported from the 'data' directory using the `read_csv()` function
+- The assignment operator (`<-`) assigns the data to an object named `global_waste_data`
+- The `here()` function creates a proper file path
 
 2.  Run the code chunk and verify it executes without errors
 
@@ -49,19 +50,19 @@ library(here)
 **Note:** You will learn more about the use of the `here()` function when we look at data import in more detail.
 
 ```{r}
-global_waste_data <- read_csv(here("md-02/data/country_level_data_0.csv"))
+global_waste_data <- read_csv(here("data/country_level_data_0.csv"))
 ```
 
 # Task 2: Data tidying (and some transformation)
 
 1.  Examine the code chunk below and verify each step:
 
--   The code starts with the `global_waste_data` object
--   The pipe operator (`|>`) connects the `select()` function to choose specific variables
--   Five variables are selected: country_name, iso3c, income_id, total_msw_total_msw_generated_tons_year, and population_population_number_of_people (note the long descriptive variable names from the original dataset)
--   Another pipe operator (`|>`) connects the `rename()` function
--   Two variables are renamed for clarity: 'total_msw_total_msw_generated_tons_year' becomes 'msw_tons_year' and 'population_population_number_of_people' becomes 'population'
--   The assignment operator (`<-`) assigns the result to `global_waste_data_small`
+- The code starts with the `global_waste_data` object
+- The pipe operator (`|>`) connects the `select()` function to choose specific variables
+- Five variables are selected: country_name, iso3c, income_id, total_msw_total_msw_generated_tons_year, and population_population_number_of_people (note the long descriptive variable names from the original dataset)
+- Another pipe operator (`|>`) connects the `rename()` function
+- Two variables are renamed for clarity: 'total_msw_total_msw_generated_tons_year' becomes 'msw_tons_year' and 'population_population_number_of_people' becomes 'population'
+- The assignment operator (`<-`) assigns the result to `global_waste_data_small`
 
 2.  Run the code chunk and verify it executes without errors
 
@@ -82,11 +83,11 @@ global_waste_data_small <- global_waste_data |>
 
 1.  Examine the code chunk below and verify each step:
 
--   The code starts with the `global_waste_data_small` object
--   The pipe operator (`|>`) connects the `mutate()` function
--   A new variable 'capita_kg_year' is created by dividing 'msw_tons_year' by 'population' and multiplying by 1000 (to convert from tons to kilograms)
--   Another `mutate()` function converts 'income_id' to a factor with specific level ordering
--   The assignment operator (`<-`) assigns the result to `global_waste_data_kg_year`
+- The code starts with the `global_waste_data_small` object
+- The pipe operator (`|>`) connects the `mutate()` function
+- A new variable 'capita_kg_year' is created by dividing 'msw_tons_year' by 'population' and multiplying by 1000 (to convert from tons to kilograms)
+- Another `mutate()` function converts 'income_id' to a factor with specific level ordering
+- The assignment operator (`<-`) assigns the result to `global_waste_data_kg_year`
 
 2.  Run the code chunk and verify it executes without errors
 
@@ -108,13 +109,13 @@ global_waste_data_kg_year <- global_waste_data_small |>
 
 1.  Examine the code chunk below and verify each element:
 
--   The `ggplot()` function uses `global_waste_data_kg_year` as the data source
--   Aesthetic mappings plot 'income_id' on the x-axis and 'capita_kg_year' on the y-axis
--   The 'color' argument maps income category to different colors
--   `geom_boxplot()` creates box plots to show data distribution
--   `geom_jitter()` adds individual data points with some horizontal spread
--   `labs()` provides custom axis labels
--   `theme_minimal()` applies a clean visual theme
+- The `ggplot()` function uses `global_waste_data_kg_year` as the data source
+- Aesthetic mappings plot 'income_id' on the x-axis and 'capita_kg_year' on the y-axis
+- The 'color' argument maps income category to different colors
+- `geom_boxplot()` creates box plots to show data distribution
+- `geom_jitter()` adds individual data points with some horizontal spread
+- `labs()` provides custom axis labels
+- `theme_minimal()` applies a clean visual theme
 
 2.  Run the code chunk and verify it executes without errors
 
