@@ -1,0 +1,86 @@
+---
+title: "Week 02 - Homework Assignment (Solutions)"
+subtitle: "Data Science Lifecycle"
+format: html
+editor: visual
+execute:
+  echo: true
+  warning: false
+editor_options:
+  chunk_output_type: console
+---
+
+# About this solutions file
+
+This file contains the completed solutions for the Week 02 homework assignment on the data science lifecycle. Each task is shown with the working code and example answers for the written reflection prompts.
+
+# Task 0: Load R packages
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(here)
+```
+
+# Task 1: Data import
+
+```{r}
+global_waste_data <- read_csv(here("md-02/data/country_level_data_0.csv"))
+```
+
+# Task 2: Data tidying (and some transformation)
+
+```{r}
+global_waste_data_small <- global_waste_data |>
+  select(country_name,
+         iso3c,
+         income_id,
+         total_msw_total_msw_generated_tons_year,
+         population_population_number_of_people) |>
+  rename(msw_tons_year = total_msw_total_msw_generated_tons_year,
+         population = population_population_number_of_people)
+```
+
+# Task 3: Data transformation
+
+```{r}
+global_waste_data_kg_year <- global_waste_data_small |>
+  mutate(capita_kg_year = msw_tons_year / population * 1000) |>
+  mutate(income_id = factor(income_id,
+                            levels = c("HIC", "UMC", "LMC", "LIC")))
+```
+
+**Q4: Describe in your own words what the `mutate()` function does in this code-chunk.**
+
+The `mutate()` function adds or changes columns in the data frame without removing any existing rows. The first call creates a new column, `capita_kg_year`, by dividing municipal solid waste (in tons per year) by population and multiplying by 1000 to convert tons to kilograms, giving per-capita waste generation in kg/year. The second call overwrites the existing `income_id` column, converting it from a plain character variable to a factor with the levels explicitly ordered from high to low income (HIC, UMC, LMC, LIC). The ordering controls how categories are arranged in tables and plots later.
+
+# Task 4: Data visualisation
+
+```{r}
+ggplot(data = global_waste_data_kg_year,
+       mapping = aes(x = income_id,
+                     y = capita_kg_year,
+                     color = income_id)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1, alpha = 1/4, size = 3) +
+  labs(x = "income category",
+       y = "MSW generation per capita [kg/yr]") +
+  theme_minimal(base_size = 14)
+```
+
+**Q4: Look at the plot you created and describe what the `mutate()` function achieved in the previous task.**
+
+Because `income_id` was turned into a factor with the levels ordered HIC, UMC, LMC, LIC, the income categories appear along the x-axis in that order instead of alphabetical order. This gives the plot a logical reading direction (from highest to lowest income), which makes the gradient in per-capita waste generation across income groups much easier to see and interpret.
+
+**Q5: Describe in your own words what the 'color' argument inside the `aes()` does.**
+
+Inside `aes()`, the `color` argument maps a variable in the data to the color aesthetic of the plot. Here, each income category in `income_id` gets its own color, so all box plots and jittered points belonging to the same income group share a color. This visually groups the observations and makes it easier to distinguish categories at a glance. ggplot2 also automatically generates a legend that links each color to its income category.
+
+**Q6: Describe in your own words what the `labs()` function does.**
+
+`labs()` lets you set the text labels of a plot, including the axis titles, plot title, subtitle, caption, and legend titles. In this code chunk, it replaces the default axis labels (the raw variable names) with human-readable descriptions: "income category" on the x-axis and "MSW generation per capita [kg/yr]" on the y-axis. This makes the plot easier to read for an audience that does not know the variable names in the underlying data frame.
+
+# Task 5: Complete assignment
+
+Workflow only (stage, commit, push, open issue). Nothing to code here.

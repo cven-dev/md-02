@@ -1,0 +1,95 @@
+---
+title: "Live Coding - Data Science Lifecycle (Solutions)"
+format: html
+editor: visual
+execute:
+  echo: true
+  warning: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r}
+library(gapminder) # R package that contains the data
+library(dplyr)
+library(ggplot2)
+library(knitr)
+```
+
+# Data import
+
+Data can be imported from many different sources. In this exercise, we import data from an R package loaded via `library()`.
+
+## Gapminder data
+
+The data is an [excerpt of the Gapminder data](https://www.gapminder.org/data/documentation/) on life expectancy, GDP per capita, and population by country, compiled for teaching purposes (up to 2007).
+
+```{r}
+gapminder
+```
+
+# Data tidying
+
+The gapminder data is already tidy: each row is one country-year observation and each column is a single variable, so no tidying step is needed before transformation.
+
+## Gapminder data
+
+```{r}
+glimpse(gapminder)
+```
+
+# Data transformation
+
+## Gapminder data
+
+**Goal:** Calculate the median life expectancy at birth by continent for 2007.
+
+Step 1: Filter the data to only include the year 2007.
+
+```{r}
+gapminder_yr_2007 <- gapminder |>
+  filter(year == 2007)
+```
+
+Step 2: Group the data by continent and calculate the median life expectancy.
+
+```{r}
+gapminder_summary_continent <- gapminder_yr_2007 |>
+  group_by(continent) |>
+  summarise(lifeExp = median(lifeExp))
+```
+
+# Data visualisation (and tables)
+
+## Gapminder data
+
+Africa has the lowest life expectancy and the greatest spread in life expectancy globally.
+
+Boxplot with jittered points showing the distribution of life expectancy by continent in 2007:
+
+```{r}
+ggplot(data = gapminder_yr_2007,
+       mapping = aes(x = continent,
+                     y = lifeExp)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1, alpha = 1/4, size = 3) +
+  labs(x = NULL,
+       y = "life expectancy") +
+  theme_minimal(base_size = 14)
+```
+
+Summary table of median life expectancy by continent in 2007:
+
+```{r}
+kable(gapminder_summary_continent,
+      col.names = c("Continent", "Median life expectancy (2007)"),
+      digits = 1)
+```
+
+# Data communication
+
+Your rendered html file is a data communication product. You can share it directly, host it as a website, or render to pdf/docx.
+
+# Stage, Commit & Push to GitHub
+
+Workflow only. Nothing to code here.
