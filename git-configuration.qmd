@@ -13,9 +13,12 @@ editor: visual
 2.  Render the document
 
 ```{r}
+#| eval: false
 library(usethis)
 use_git_config(user.name = "Your Name", user.email = "Your Email")
 ```
+
+**Note:** This code chunk is not executed when you render the document. After you have edited the placeholders with your name and email address, copy the two lines into the console and run them there.
 
 ## Commit and push your changes
 
